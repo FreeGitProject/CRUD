@@ -15,4 +15,8 @@
     <Folder Include="ProfileMapper\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CoreV1\CoreV1.csproj" />
+  </ItemGroup>
+
 </Project>
