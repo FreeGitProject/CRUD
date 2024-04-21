@@ -5,11 +5,17 @@ using CoreV1.Service.Brand;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.VisualBasic;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Principal;
 
 namespace CRUD.Controllers
 {
-    public class BrandController : Controller
+    //[ApiVersion("1")]
+    //[Route("api/v{v:apiVersion}/brand")]
+    //[ApiController]
+    [ApiController]
+    [Route("[controller]")]
+    public class BrandController : ControllerBase
     {
         private readonly IBrandService _brandService;
         protected ApiBaseIdentity Identity => (ApiBaseIdentity)Thread.CurrentPrincipal.Identity;
@@ -18,10 +24,7 @@ namespace CRUD.Controllers
         {
             _brandService = brandService;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
+    
         /// <summary>
         /// Create Brand
         /// </summary>

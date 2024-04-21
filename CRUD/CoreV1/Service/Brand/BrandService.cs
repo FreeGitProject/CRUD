@@ -25,15 +25,19 @@ namespace CoreV1.Service.Brand
 
         public BoolResponse CreateBrand(BrandAddModel model, string langCulture)
         {
+            //Identity.OrgId = Guid.Parse("571B795F-BAA7-40AE-9EA9-76B1E23AC924");
+            //Identity.DomainId = Identity.OrgId;
+            //Identity.Email = Identity.Email;
+            var email = "test";
             DynamicParameters dbParams = new DynamicParameters();
             dbParams.AddDynamicParams(
                 new
                 {
-                    @OrgId = Identity.OrgId,
-                    @DomainId = Identity.DomainId,
+                    @OrgId = Guid.Parse("571B795F-BAA7-40AE-9EA9-76B1E23AC924"),
+                    @DomainId = Guid.Parse("24C4AAB5-1B09-4C45-A7EA-C2CCE16E4D6D"),
                     @BrandName = model.ManufacturerName,
                     @LangCulture = langCulture,
-                    @SavedBy = Identity.Email,
+                    @SavedBy = email,
                     @Type = model.Type,
                     @ParentBrandId = model.ParentManufId
                 }
