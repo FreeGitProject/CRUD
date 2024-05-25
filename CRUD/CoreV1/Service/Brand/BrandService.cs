@@ -53,7 +53,7 @@ namespace CoreV1.Service.Brand
             return blResp;
         }
 
-        public BrandModel GetBrand(Guid id, string langCulture)
+        public Entities.brands.Brand GetBrand(Guid id, string langCulture)
         {
             DynamicParameters dbParams = new DynamicParameters();
             dbParams.AddDynamicParams(
@@ -69,15 +69,15 @@ namespace CoreV1.Service.Brand
 
             var brand = (
                         from o in dbResponse
-                        select new BrandModel
+                        select new Entities.brands.Brand
                         {
                             RecordId = o.ManufacturerId,
                             ManufacturerName = o.Name,
                             ExcludeFromSearch = o.ExcludeForSearch,
                             ShowSiteStrip = o.ShowSiteStrip,
                             VideoID = o.VideoUrl,
-                            LogoImageName = o.LogoImageName,
-                            PremiumBrandLogo = o.PremiumBrandLogo,
+                            LogoImageUrl = o.LogoImageName,
+                            PremiumLogoImageUrl = o.PremiumBrandLogo,
                             EnableMoreAbout = o.EnableMoreAbout,
                             SubbrandIds = o.SubbrandIds,
                             HideBrandVisibility = o.HideBrandVisibility,
@@ -115,7 +115,7 @@ namespace CoreV1.Service.Brand
             return mediaList;
         }
 
-        public List<BrandModel> GetBrands(int? currentPage, int? pageSize, BrandFilter filter, string langCulture)
+        public List<Entities.brands.Brand> GetBrands(int? currentPage, int? pageSize, BrandFilter filter, string langCulture)
         {
             DynamicParameters dbParams = new DynamicParameters();
             dbParams.AddDynamicParams(
@@ -136,7 +136,7 @@ namespace CoreV1.Service.Brand
 
             var brands = (
                         from o in dbResponse
-                        select new BrandModel
+                        select new Entities.brands.Brand
                         {
                             RecordId = o.ID,
                             ManufacturerName = o.Name,
@@ -157,8 +157,8 @@ namespace CoreV1.Service.Brand
                             Id = o.IId,
                             IsActive = (bool)o.IsActive,
                             ProductCount = o.ProductCount,
-                            LogoImageName = o.LogoImageName,
-                            PremiumBrandLogo = o.PremiumBrandLogo,
+                            LogoImageUrl = o.LogoImageName,
+                            PremiumLogoImageUrl = o.PremiumBrandLogo,
                             IsHighlighted = o.Ishighlighted ?? false,
                             CssClass = o.CssClass
                         }

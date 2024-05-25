@@ -36,11 +36,11 @@ namespace CRUD.Controllers
         /// <returns></returns> 
         [HttpPost]
         [Route("create")]
-        public BoolResponse Create(BrandAddModel model, string langCulture)
+        public BoolResponse Create(BrandAddModel model)
         {
-           // _logger.LogInformation("Create brand request model : {@model} and langCulture : {@langCulture}", model, langCulture);
-            if (string.IsNullOrEmpty(langCulture))
-                langCulture = Identity.LangCulture;
+            // _logger.LogInformation("Create brand request model : {@model} and langCulture : {@langCulture}", model, langCulture);
+            //if (string.IsNullOrEmpty(langCulture))
+           var  langCulture = "en-GB";//Identity.LangCulture;
           //  var response = RuleHelper.ExecuteRules(Constants.BrandCreateUpdateValidation, model);
             //if (!response.IsValid) return response;
             var resp = _brandService.CreateBrand(model, langCulture);
@@ -112,7 +112,7 @@ namespace CRUD.Controllers
 
             var data = _brandService.GetBrand(id, "en-GB");
             var brand = _mapper.Map<BrandModel>(data);
-            brand.ImageFiles = _brandService.GetBrandMedia(id);
+           // brand.ImageFiles = _brandService.GetBrandMedia(id);
 
             //brand.ImageFiles.ForEach(x => x.Link = x.Link.ImageUrl(ImageObjectTypes.Brand, string.Empty, imageBaseUrl: imageUrl));
 

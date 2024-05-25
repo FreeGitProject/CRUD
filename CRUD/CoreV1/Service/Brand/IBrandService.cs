@@ -11,8 +11,8 @@ namespace CoreV1.Service.Brand
 {
     public interface IBrandService
     {
-        List<BrandModel> GetBrands(int? currentPage, int? pageSize, BrandFilter filter, string langCulture);
-        BrandModel GetBrand(Guid id, string langCulture);
+        List<Entities.brands.Brand> GetBrands(int? currentPage, int? pageSize, BrandFilter filter, string langCulture);
+        Entities.brands.Brand GetBrand(Guid id, string langCulture);
         List<ImageItem> GetBrandMedia(Guid recordId);
         List<LocalizedEntity> GetLocalizedEntities(Guid entityId, string langCulture = "", string className = "");
         BoolResponse CreateBrand(BrandAddModel model, string langCulture);
