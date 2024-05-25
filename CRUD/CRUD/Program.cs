@@ -1,5 +1,7 @@
+using AutoMapper;
 using CoreV1.Dapper;
 using CoreV1.Service.Brand;
+using CRUD.ProfileMapper;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+#region AutoMapper
+builder.Services.AddAutoMapper(typeof(Program)); var config = new MapperConfiguration(c => { c.AddProfile(new ProfileMapper()); });
+var mapper = config.CreateMapper();
+builder.Services.AddSingleton(mapper); builder.Services.AddScoped<IMapper, Mapper>();
+#endregion AutoMapper
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

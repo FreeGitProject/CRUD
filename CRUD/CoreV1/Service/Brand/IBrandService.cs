@@ -11,7 +11,7 @@ namespace CoreV1.Service.Brand
 {
     public interface IBrandService
     {
-        List<BrandModel> GetBrands(MasterFilter filter, string langCulture);
+        List<BrandModel> GetBrands(int? currentPage, int? pageSize, BrandFilter filter, string langCulture);
         BrandModel GetBrand(Guid id, string langCulture);
         List<ImageItem> GetBrandMedia(Guid recordId);
         List<LocalizedEntity> GetLocalizedEntities(Guid entityId, string langCulture = "", string className = "");

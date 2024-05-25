@@ -59,8 +59,8 @@ namespace CoreV1.Service.Brand
             dbParams.AddDynamicParams(
                 new
                 {
-                    @OrgId = Identity.OrgId,
-                    @DomainId = Identity.DomainId,
+                    @OrgId = Guid.Parse("571B795F-BAA7-40AE-9EA9-76B1E23AC924"),
+                    @DomainId = Guid.Parse("24C4AAB5-1B09-4C45-A7EA-C2CCE16E4D6D"),
                     @ManufId = id,
                     @LangCulture = langCulture
                 }
@@ -115,18 +115,18 @@ namespace CoreV1.Service.Brand
             return mediaList;
         }
 
-        public List<BrandModel> GetBrands(MasterFilter filter, string langCulture)
+        public List<BrandModel> GetBrands(int? currentPage, int? pageSize, BrandFilter filter, string langCulture)
         {
             DynamicParameters dbParams = new DynamicParameters();
             dbParams.AddDynamicParams(
                 new
                 {
-                    @OrgId = Identity.OrgId,
-                    @DomainId = Identity.DomainId,
+                    @OrgId = Guid.Parse("571B795F-BAA7-40AE-9EA9-76B1E23AC924"),
+                    @DomainId = Guid.Parse("24C4AAB5-1B09-4C45-A7EA-C2CCE16E4D6D"),
                     @ManufactureId = filter.ManufacturerId,
                     @Name = filter.Name,
-                    @CurrentPage = filter.CurrentPage,
-                    @PageSize = filter.PageSize,
+                    @CurrentPage = currentPage,
+                    @PageSize = pageSize,
                     @IsParentManuf = filter.IsParentManufId,
                     @IsActive = filter.IsActive,
                     @LangCulture = langCulture
@@ -147,8 +147,8 @@ namespace CoreV1.Service.Brand
                             Description = o.Description,
                             CategoryCode = o.CategoryCode,
                             ChildCount = o.ChildCount,
-                            CurrentPage = filter.CurrentPage,
-                            PageSize = filter.PageSize,
+                            CurrentPage = (int)currentPage,
+                            PageSize = (int)pageSize,
                             TotalRecord = o.TotalRecord,
                             MetaDescription = o.MetaDescription,
                             MetaTitle = o.MetaTitle,
@@ -177,8 +177,8 @@ namespace CoreV1.Service.Brand
                     @ClassName = className,
                     @LangCulture = langCulture,
                     @EntityId = entityId,
-                    @DomainId = Identity.DomainId,
-                    @OrgId = Identity.OrgId,
+                    @OrgId = Guid.Parse("571B795F-BAA7-40AE-9EA9-76B1E23AC924"),
+                    @DomainId = Guid.Parse("24C4AAB5-1B09-4C45-A7EA-C2CCE16E4D6D"),
                 }
             );
             var dbResponse = _dapperRepository.GetAll<dynamic>(DBProcedures.ProcGetLocalTextEntity, dbParams, OmnicxConstants.DB_OMNICXMASTER);
@@ -219,8 +219,8 @@ namespace CoreV1.Service.Brand
             var dbParams = new DynamicParameters();
             dbParams.AddDynamicParams(new
             {
-                @OrgId = Identity.OrgId,
-                @DomainId = Identity.DomainId,
+                @OrgId = Guid.Parse("571B795F-BAA7-40AE-9EA9-76B1E23AC924"),
+                @DomainId = Guid.Parse("24C4AAB5-1B09-4C45-A7EA-C2CCE16E4D6D"),
                 @ManufId = model.RecordId,
                 @Name = model.ManufacturerName,
                 @ExcludeForSearch = model.ExcludeFromSearch,

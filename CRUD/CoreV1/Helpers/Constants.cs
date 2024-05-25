@@ -120,11 +120,11 @@ namespace CoreV1.Helpers
 
         #region Brand
         public const string ProcCreateBrand = "procAddBrand_20240311";
-        public const string ProcGetBrandList = "procGetMasterManufacturers_20240311";
-        public const string ProcGetBrand = "procGetManufacturerContent_20240312";
+        public const string ProcGetBrandList = "procGetMasterManufacturers_20240522";//"procGetMasterManufacturers_20240311";
+        public const string ProcGetBrand = "procGetManufacturerContent_20240312";//"procGetManufacturerContent_20240312";
         public const string ProcGetBrandMedia = "procGetBrandMedia_20230628";
         public const string ProcGetLocalTextEntity = "procGetLocalTextEntity_20210904";
-        public const string ProcUpdateBrand = "procSaveManufacturerContent_20240312";
+        public const string ProcUpdateBrand = "procSaveManufacturerContent_20240521";
         #endregion
         #region Search Procedure Constants
         public const string ProcGetAllProductsByEntityId = "procCatalogSearchObject_20240228";
