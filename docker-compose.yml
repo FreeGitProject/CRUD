@@ -1,0 +1,39 @@
+version: '3.4'
+
+services:
+  crud.category.api:
+    image: ${DOCKER_REGISTRY-}crudcategoryapi
+    container_name: crud.category.api
+    build:
+      context: .
+      dockerfile: CRUD.Category.Api/Dockerfile
+    depends_on:
+      - crud_category_db
+
+  crud_category_db:
+    image: postgres:latest
+    container_name: crud_category_db
+    environment:
+      - POSTGRES_DB=crudcategory
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./.containers/database:/var/lib/postgresql/data
+    ports:
+      - "5431:5432"
+
+  crud.category-seq:
+    image: datalust/seq:latest
+    container_name: crud.category.seq
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - "5341:5341"
+      - "8081:80"
+
+  crud.category-redis:
+    image: redis:latest
+    container_name: crud.category.redis
+    restart: always
+    ports:
+      - "6379:6379"
