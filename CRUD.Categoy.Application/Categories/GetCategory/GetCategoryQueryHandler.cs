@@ -63,6 +63,7 @@ internal sealed class GetCategoryQueryHandler : IQueryHandler<GetCategoryQuery, 
                                description AS Description,
                                status AS IsActive
                            FROM category
+                           Where id=@Id
                            """;
 
         CategoryResponse? category = await connection.QueryFirstOrDefaultAsync<CategoryResponse>(
