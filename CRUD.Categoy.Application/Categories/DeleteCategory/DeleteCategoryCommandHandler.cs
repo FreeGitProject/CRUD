@@ -29,7 +29,7 @@ namespace CRUD.Category.Application.Categories.DeleteCategory
             }
 
             // Perform deletion
-            await _categoryRepository.DeleteAsync(request.CategoryId);
+             _categoryRepository.DeleteAsync(category);
 
             // Save changes
             await _unitOfWork.SaveChangesAsync(cancellationToken);

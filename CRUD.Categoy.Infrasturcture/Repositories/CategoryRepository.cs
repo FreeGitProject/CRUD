@@ -16,21 +16,23 @@ internal sealed class CategoryRepository : Repository<Category.Domain.Categories
         
     }
 
-    public Task DeleteAsync(Guid id)
+    //public Task DeleteAsync(Category category)
+    //{
+    //    var category =  GetByIdAsync(id);
+    //    if (category != null)
+    //    {
+    //        DbContext.Remove(category);
+    //    }
+    //    else
+    //    {
+    //        throw new KeyNotFoundException($"Category with ID {id} not found.");
+    //    }
+    //    //return Result.Success();
+    //    return Task.CompletedTask;
+    //}
+
+    public void DeleteAsync(Category.Domain.Categories.Category category)
     {
-        var category =  GetByIdAsync(id);
-        if (category != null)
-        {
-            DbContext.Remove(category);
-        }
-        else
-        {
-            throw new KeyNotFoundException($"Category with ID {id} not found.");
-        }
-        //return Result.Success();
-        return Task.CompletedTask;
+        DbContext.Remove(category);
     }
-
-
-  
 }

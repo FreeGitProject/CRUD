@@ -12,6 +12,6 @@ namespace CRUD.Category.Domain.Categories
        // Task<IEnumerable<Category>> GetAllAsync();
         void AddAsync(Category category);
         //Task UpdateAsync(Category category);
-        Task DeleteAsync(Guid id);
+        void DeleteAsync(Category category);
     }
 }
