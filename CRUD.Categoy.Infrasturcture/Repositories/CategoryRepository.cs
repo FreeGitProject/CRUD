@@ -2,6 +2,9 @@
 using System.Data;
 using CRUD.Category.Infrastructure;
 using Dapper;
+using System.Xml.Linq;
+using Microsoft.AspNetCore.Http.HttpResults;
+using CRUD.Category.Domain.Abstractions;
 
 namespace CRUD.Categoy.Infrasturcture.Repositories;
 
@@ -15,26 +18,19 @@ internal sealed class CategoryRepository : Repository<Category.Domain.Categories
 
     public Task DeleteAsync(Guid id)
     {
-        throw new NotImplementedException();
+        var category =  GetByIdAsync(id);
+        if (category != null)
+        {
+            DbContext.Remove(category);
+        }
+        else
+        {
+            throw new KeyNotFoundException($"Category with ID {id} not found.");
+        }
+        //return Result.Success();
+        return Task.CompletedTask;
     }
 
-    public Task<IEnumerable<Category.Domain.Categories.Category>> GetAllAsync()
-    {
-        throw new NotImplementedException();
-    }
 
-    public Task<Category.Domain.Categories.Category> GetByIdAsync(Guid id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task UpdateAsync(Category.Domain.Categories.Category category)
-    {
-        throw new NotImplementedException();
-    }
-
-    //Task ICategoryRepository.AddAsync(Category.Domain.Categories.Category category)
-    //{
-    //    throw new NotImplementedException();
-    //}
+  
 }

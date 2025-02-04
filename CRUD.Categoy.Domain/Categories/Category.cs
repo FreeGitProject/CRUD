@@ -27,29 +27,19 @@ namespace CRUD.Category.Domain.Categories
         // Factory method for creating a new category
         public static Category Create(string name, string description)
         {
-            if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentException("Name cannot be null or empty.", nameof(name));
-
-            if (string.IsNullOrWhiteSpace(description))
-                throw new ArgumentException("Description cannot be null or empty.", nameof(description));
-
+          
             return new Category(Guid.NewGuid(), name, description);
         }
 
         // Update category details
         public void Update(string name, string description)
         {
-            if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentException("Name cannot be null or empty.", nameof(name));
-
-            if (string.IsNullOrWhiteSpace(description))
-                throw new ArgumentException("Description cannot be null or empty.", nameof(description));
-
             var oldName = Name;
             var oldDescription = Description;
 
             Name = name;
             Description = description;
+            
 
             // Raise the CategoryUpdatedDomainEvent
             RaiseDomainEvent(new CategoryUpdatedDomainEvent(Id, oldName, name, oldDescription, description, Status));

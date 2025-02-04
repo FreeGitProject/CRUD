@@ -25,4 +25,4 @@ public class CreateCategoryCommandHandler : ICommandHandler<CreateCategoryComman
 
         return category.Id;
     }
-}
+}   

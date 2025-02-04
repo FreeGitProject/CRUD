@@ -8,10 +8,10 @@ namespace CRUD.Category.Domain.Categories
 {
     public interface ICategoryRepository
     {
-        Task<Category> GetByIdAsync(Guid id);
-        Task<IEnumerable<Category>> GetAllAsync();
+        Task<Category?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+       // Task<IEnumerable<Category>> GetAllAsync();
         void AddAsync(Category category);
-        Task UpdateAsync(Category category);
+        //Task UpdateAsync(Category category);
         Task DeleteAsync(Guid id);
     }
 }
