@@ -25,7 +25,7 @@ internal abstract class Repository<T>
             .FirstOrDefaultAsync(category => category.Id == id, cancellationToken);
     }
 
-    public virtual void AddAsync(T entity)
+    public virtual void Add(T entity)
     {
         DbContext.Add(entity);
     }

@@ -10,7 +10,7 @@ namespace CRUD.Category.Domain.Categories
     {
         Task<Category?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
        // Task<IEnumerable<Category>> GetAllAsync();
-        void AddAsync(Category category);
+        void Add(Category category);
         //Task UpdateAsync(Category category);
         void DeleteAsync(Category category);
     }

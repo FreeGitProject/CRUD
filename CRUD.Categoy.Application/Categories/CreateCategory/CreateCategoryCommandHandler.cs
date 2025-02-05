@@ -20,7 +20,7 @@ public class CreateCategoryCommandHandler : ICommandHandler<CreateCategoryComman
     {
         var category = Domain.Categories.Category.Create(request.Name, request.Description);
 
-         _categoryRepository.AddAsync(category);
+         _categoryRepository.Add(category);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return category.Id;
