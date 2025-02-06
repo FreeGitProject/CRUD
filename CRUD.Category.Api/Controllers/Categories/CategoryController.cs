@@ -5,10 +5,12 @@ using CRUD.Category.Application.Categories.GetCategory;
 using CRUD.Category.Application.Categories.UpdateCategory;
 using CRUD.Category.Domain.Abstractions;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CRUD.Category.Api.Controllers.Categories
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
 

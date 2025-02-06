@@ -17,14 +17,14 @@ namespace CRUD.Category.Infrasturcture.Repositories
         {
         }
 
-        //public override void Add(User user)
-        //{
-        //    foreach (var role in user.Roles)
-        //    {
-        //        DbContext.Attach(role);
-        //    }
+        public override void Add(User user)
+        {
+            foreach (var role in user.Roles)
+            {
+                DbContext.Attach(role);
+            }
 
-        //    DbContext.Add(user);
-        //}
+            DbContext.Add(user);
+        }
     }
 }
