@@ -1,4 +1,5 @@
-﻿using CRUD.Category.Application.Abstractions.Messaging;
+﻿using CRUD.Category.Application.Abstractions.Caching;
+using CRUD.Category.Application.Abstractions.Messaging;
 using CRUD.Category.Domain.Abstractions;
 using CRUD.Category.Domain.Categories;
 using System;
@@ -13,15 +14,18 @@ namespace CRUD.Category.Application.Categories.UpdateCategory
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IUnitOfWork _unitOfWork;
-
-        public UpdateCategoryCommandHandler(ICategoryRepository categoryRepository, IUnitOfWork unitOfWork)
+        private readonly ICacheService _cacheService;
+        public UpdateCategoryCommandHandler(ICategoryRepository categoryRepository, IUnitOfWork unitOfWork, ICacheService cacheService)
         {
             _categoryRepository = categoryRepository;
             _unitOfWork = unitOfWork;
+            _cacheService = cacheService;
         }
 
         public async Task<Result> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
         {
+            var cat = $"Categories-{request.CategoryId}";
+            await _cacheService.RemoveAsync(cat, cancellationToken);
             // Fetch the category from the repository
             var category = await _categoryRepository.GetByIdAsync(request.CategoryId);
             if (category == null)

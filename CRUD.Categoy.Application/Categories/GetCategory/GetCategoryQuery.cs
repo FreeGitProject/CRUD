@@ -1,5 +1,4 @@
 ﻿using CRUD.Category.Application.Abstractions.Caching;
-using CRUD.Category.Application.Abstractions.Messaging;
 
 namespace CRUD.Category.Application.Categories.GetCategory;
 
