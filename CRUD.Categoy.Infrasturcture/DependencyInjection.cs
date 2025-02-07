@@ -39,21 +39,21 @@ public static class DependencyInjection
 
         services.AddSingleton<ISqlConnectionFactory>(_ =>
             new SqlConnectionFactory(connectionString));
-        // AddCaching(services, configuration);
+         AddCaching(services, configuration);
 
         AddAuthentication(services, configuration);
         return services;
     }
 
-    //private static void AddCaching(IServiceCollection services, IConfiguration configuration)
-    //{
-    //    string connectionString = configuration.GetConnectionString("Cache") ??
-    //                              throw new ArgumentNullException(nameof(configuration));
+    private static void AddCaching(IServiceCollection services, IConfiguration configuration)
+    {
+        string connectionString = configuration.GetConnectionString("Cache") ??
+                                  throw new ArgumentNullException(nameof(configuration));
 
-    //    services.AddStackExchangeRedisCache(options => options.Configuration = connectionString);
+        services.AddStackExchangeRedisCache(options => options.Configuration = connectionString);
 
-    //    services.AddSingleton<ICacheService, CacheService>();
-    //}
+        services.AddSingleton<ICacheService, CacheService>();
+    }
     private static void AddAuthentication(IServiceCollection services, IConfiguration configuration)
     {
         services
